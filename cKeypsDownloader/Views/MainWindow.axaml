@@ -1,0 +1,37 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:cKeypsDownloader.ViewModels;assembly=cKeypsDownloader"
+        xmlns:views="clr-namespace:cKeypsDownloader.Views;assembly=cKeypsDownloader"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="cKeypsDownloader.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="cKeypsDownloader">
+  <Design.DataContext>
+    <vm:MainWindowViewModel />
+  </Design.DataContext>
+  <DockPanel>
+    <Menu DockPanel.Dock="Top">
+      <MenuItem Header="_File">
+        <MenuItem Header="_Open" />
+        <MenuItem Header="_Download single lesson" />
+        <MenuItem Header="_Settings" Command="{Binding ShowSettingsWindow}" />
+      </MenuItem>
+    </Menu>
+    <DockPanel DockPanel.Dock="Top">
+      <Button DockPanel.Dock="Right" Content="KEYPS Excel raporu seç"
+              Width="200"
+              Name="KeypsFileDialogButtonOnClick"
+              Command="{Binding KeypsFileDialogButtonOnClick}" />
+      <Border BorderBrush="Black" BorderThickness="0.5">
+        <TextBlock
+          Margin="10, 0"
+          FontWeight="SemiBold"
+          Text="{Binding KeypsFileName}"
+          VerticalAlignment="Center" />
+      </Border>
+    </DockPanel>
+    <views:LessonListView DataContext="{Binding LessonListViewModel}" DockPanel.Dock="Bottom" />
+  </DockPanel>
+</Window>

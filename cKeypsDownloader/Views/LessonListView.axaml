@@ -1,0 +1,71 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:cKeypsDownloader.ViewModels;assembly=cKeypsDownloader"
+             x:Class="cKeypsDownloader.Views.LessonListView">
+  <Design.DataContext>
+    <vm:LessonListViewModel />
+  </Design.DataContext>
+
+  <DockPanel>
+    <DockPanel DockPanel.Dock="Top">
+      <Button DockPanel.Dock="Right" Width="200" Content="Dersi indir" Name="SingleKeypsLessonDownload"
+              Command="{Binding SingleKeypsLessonDownloadButtonOnClick }" />
+      <TextBox Watermark="Ders URL'si" Text="{Binding SingleLessonUrl}" />
+    </DockPanel>
+    <ProgressBar DockPanel.Dock="Bottom" IsVisible="{Binding ShowProgressBar}" IsIndeterminate="True" />
+    <Button DockPanel.Dock="Bottom"
+            IsVisible="{Binding ShowDownloadButton}"
+            HorizontalAlignment="Right"
+            Margin="10"
+            IsEnabled="True"
+            Command="{Binding DownloadLessonsButtonClick}"
+            Content="Seçilen dersleri indir" />
+    <Border BorderBrush="Black" BorderThickness="0.25" DockPanel.Dock="Bottom">
+      <DockPanel>
+        <Expander Header="İndirilenler" ExpandDirection="Down">
+          <ListBox Items="{Binding Downloads}">
+            <ListBox.ItemTemplate>
+              <DataTemplate>
+                <DockPanel>
+                  <TextBlock DockPanel.Dock="Right" Text="{Binding DownloadState}"></TextBlock>
+                  <TextBlock Text="{Binding Lesson.Name}" />
+                </DockPanel>
+              </DataTemplate>
+            </ListBox.ItemTemplate>
+          </ListBox>
+        </Expander>
+      </DockPanel>
+    </Border>
+    <DataGrid Items="{Binding Items}" Name="DataGrid1" AutoGenerateColumns="False" IsReadOnly="True"
+              RowBackground="White" AlternatingRowBackground="White" FontSize="15">
+      <DataGrid.Columns>
+        <DataGridTemplateColumn IsReadOnly="False" CanUserSort="True" SortMemberPath="IsChecked">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <CheckBox IsChecked="{Binding IsChecked}" />
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+        <DataGridTextColumn Header="ID"
+                            Binding="{Binding Lesson.Id}" />
+        <DataGridTextColumn Header="KONU"
+                            Binding="{Binding Lesson.Name}"
+                            Width="4*" />
+        <DataGridTextColumn Header="DERS"
+                            Binding="{Binding Lesson.Alan}"
+                            Width="2*" />
+        <DataGridTextColumn Header="ÖĞRETMEN"
+                            Binding="{Binding Lesson.Teacher}"
+                            Width="2*" />
+        <DataGridTextColumn Header="Grade"
+                            Binding="{Binding Lesson.Grade}"
+                            Width="*" />
+        <DataGridTextColumn Header="TARİH"
+                            Binding="{Binding Lesson.Date}" />
+      </DataGrid.Columns>
+    </DataGrid>
+  </DockPanel>
+</UserControl>

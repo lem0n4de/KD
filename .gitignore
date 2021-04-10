@@ -1,0 +1,9 @@
+﻿/cKeypsDownloader/obj/
+/cKeypsDownloader/bin/
+/.idea/
+/.ionide/
+/.vs/
+/.vscode/
+/keypsDownloaderCore/bin/
+/keypsDownloaderCore/obj/
+/TestResults/

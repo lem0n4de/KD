@@ -1,0 +1,23 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="cKeypsDownloader.Views.SettingsWindow"
+        xmlns:vm="clr-namespace:cKeypsDownloader.ViewModels"
+        Title="Settings">
+  <Design.DataContext>
+    <vm:SettingsWindowViewModel />
+  </Design.DataContext>
+  <DockPanel Margin="20">
+    <StackPanel Orientation="Vertical">
+      <Border BorderBrush="Black" BorderThickness="0.2, 0.2, 0.2, 0.2">
+        <DockPanel>
+          <TextBlock Text="Download Path" DockPanel.Dock="Left"/>
+          <Button Content="Change" DockPanel.Dock="Right" />
+          <TextBlock Text="{Binding DownloadPath}" />
+        </DockPanel>
+      </Border>
+    </StackPanel>
+  </DockPanel>
+</Window>
